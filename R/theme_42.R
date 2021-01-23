@@ -38,12 +38,15 @@ theme_42 <- function(){
         size = 20,                #set font size
         face = 'bold',            #bold typeface
         hjust = 0,                #left align
-        vjust = 2),               #raise slightly
+        vjust = 1.5,               #raise slightly
+        margin = ggplot2::margin(b = 8)),
 
       plot.subtitle = ggplot2::element_text(#subtitle
         family = font,            #font family
         hjust = 0,
-        size = 14),               #font size
+        vjust = 1,
+        size = 14,               #font size
+        margin = ggplot2::margin(b = 18)),
 
       plot.caption = ggplot2::element_text(#caption
         family = font,            #font family
@@ -52,19 +55,28 @@ theme_42 <- function(){
 
       axis.title = ggplot2::element_text(  #axis titles
         family = font,            #font family
-        size = 10),               #font size
+        size = 10,               #font size
+        hjust = 1),
+
+     # axis.title.y = ggplot2::element_text(
+      #  margin = ggplot2::margin(b=2, r=2,t=2,l=2, unit='pt'),
+        #angle = 0),
 
       axis.text = ggplot2::element_text(   #axis text
         family = font,            #axis family
-        size = 9),                #font size
+        size = 9,                #font size
+        margin = ggplot2::margin(t = 0, r = 0)),
 
       axis.text.x = ggplot2::element_text( #margin for axis text
         margin=ggplot2::margin(5, b = 10)),
+      axis.text.y = ggplot2::element_text( #margin for axis text
+      margin=ggplot2::margin(l = 10)),
 
       #since the legend often requires manual tweaking
       #based on plot content, don't define it here
 
-      plot.margin = ggplot2::margin(30, 30, 30, 30)
+      plot.margin = ggplot2::margin(30, 30, 30, 30),
+    plot.title.position = "plot"
 
     )
 }
