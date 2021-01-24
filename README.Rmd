@@ -81,6 +81,13 @@ Now, let's color it with one of our palettes. First we can take a look at the pa
 palette_42("i42")
 
 ```
+Now, the brighter palette!
+
+```{r example3b, dpi=300, fig.asp=0.4}
+
+palette_42("i42_bright")
+
+```
 
 Then we plot the same chart and add our colors.
 

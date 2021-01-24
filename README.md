@@ -77,7 +77,14 @@ at the palette separately.
 palette_42("i42")
 ```
 
-<img src="man/figures/README-example3-1.png" width="100%" />
+<img src="man/figures/README-example3-1.png" width="100%" /> Now, the
+brighter palette!
+
+``` r
+palette_42("i42_bright")
+```
+
+<img src="man/figures/README-example3b-1.png" width="100%" />
 
 Then we plot the same chart and add our colors.
 
