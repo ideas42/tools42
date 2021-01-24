@@ -58,6 +58,16 @@ ggplot(iris, aes(Sepal.Width, Sepal.Length)) +
 
 <img src="man/figures/README-example2-1.png" width="100%" />
 
+``` r
+ggplot(iris, aes(Sepal.Width, Sepal.Length)) + 
+  geom_point() +
+  labs(title = "This is a sample plot",
+       subtitle = "And this is the subtitle") +
+  theme_42_bright()
+```
+
+<img src="man/figures/README-example2b-1.png" width="100%" />
+
 ## Example: palettes
 
 Now, let’s color it with one of our palettes. First we can take a look
@@ -76,8 +86,8 @@ ggplot(iris, aes(Sepal.Width, Sepal.Length, color = Species)) +
   geom_point() +
   labs(title = "This is a sample plot",
        subtitle = "And this is the subtitle") +
-  theme_42() +
-  scale_color_manual(values = palette_42("i42"))
+  theme_42_bright() +
+  scale_color_manual(values = palette_42("i42_bright"))
 ```
 
 <img src="man/figures/README-example4-1.png" width="100%" />

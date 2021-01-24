@@ -9,7 +9,8 @@
 #' @export
 palettes_42 <- list(
   i42 = c("#1c8a70", "#0078b7", "#fddb12", "#f37321"),
-  i42_bright = c("#5A73BF", "#ADB8D9", "#A46656", "#F2B138", "#AA1E0C")
+  #i42_bright = c("#5A73BF", "#ADB8D9", "#A46656", "#F2B138", "#AA1E0C")
+  i42_bright = c("#199b64", "#e73307",  "#f0b340","#1fcbc3", "#5e0c86")
 )
 
 
