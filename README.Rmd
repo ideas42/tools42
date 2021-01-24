@@ -46,6 +46,7 @@ library(tools42)
 viz_hist(iris, "Sepal.Width")
 
 ```
+
 ## Example: themes
 
 Let's try using our theme now:

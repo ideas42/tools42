@@ -40,8 +40,9 @@ viz_hist(iris, "Sepal.Width")
 #> `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-<img src="man/figures/README-example-1.png" width="100%" /> \#\#
-Example: themes
+<img src="man/figures/README-example-1.png" width="100%" />
+
+## Example: themes
 
 Let’s try using our theme now:
 
