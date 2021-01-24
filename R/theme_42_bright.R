@@ -25,7 +25,8 @@ theme_42_bright <- function(){
 
     strip.background = ggplot2::element_blank(),
     #grid elements
-    #panel.grid.major = element_blank(),    #strip major gridlines
+    #panel.grid=element_line(color=mycol, size=0.3),
+    panel.grid.major=element_line(color="#e9ecec", size=0.3),
     panel.grid.minor = ggplot2::element_blank(),    #strip minor gridlines
     axis.ticks = ggplot2::element_blank(),          #strip axis ticks
 
