@@ -20,6 +20,6 @@ a ggplot2 object, so it's easily expanded.
 }
 \examples{
 
-my_data <- data.frame(my_variable = c(1,2,3,4,5))
-viz_hist(my_data, "my_variable")
+my_data <- data.frame(x = c(1,2,3,4,5))
+viz_hist(my_data, x)
 }

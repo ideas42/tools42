@@ -15,15 +15,15 @@
 #'
 #' @examples
 #'
-#' my_data <- data.frame(my_variable = c(1,2,3,4,5))
-#' viz_hist(my_data, "my_variable")
+#' my_data <- data.frame(x = c(1,2,3,4,5))
+#' viz_hist(my_data, x)
 
 #' @importFrom rlang .data
 viz_hist <- function(data, xvar) {
 
   gg <-
     ggplot2::ggplot(data) +
-    ggplot2::aes(x = .data[[xvar]]) +
+    ggplot2::aes(x = {{xvar}}) +
     ggplot2::geom_histogram()
 
   return(gg)

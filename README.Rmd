@@ -11,6 +11,8 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = "100%"
 )
+library(palmerpenguins)
+data(penguins)
 ```
 
 # tools42
@@ -25,6 +27,7 @@ The goal of tools42 is to make life easier for folks at ideas42 who are doing an
 - Templates for projects, reports, and briefs
 - Themes for publication-ready figures
 - Functions to help you export data and results in accessible formats
+- et cetera
 
 ## Installation
 
@@ -34,37 +37,49 @@ You can install the development version from [GitHub](https://github.com/) with:
 # install.packages("devtools")
 devtools::install_github("ideas42/tools42")
 ```
-## Example: plots
+## Plots
 
-This is a basic example which shows you how to solve a common problem: plotting a histogram.
+This is a basic example which shows you how to solve a common problem: plotting your data. Let's start with a scatterplot and histogram.
 
-```{r example, dpi=300}
+```{r plots1, dpi=300}
 
 library(tools42)
-## basic example code
 
-viz_hist(iris, "Sepal.Width")
+## Plotting a histogram of penguin bill length
+
+viz_hist(penguins, bill_length_mm) +
+  theme_42()
 
 ```
 
-## Example: themes
+```{r plots2, dpi=300}
 
-Let's try using our theme now:
+## Simple scatterplot
 
-```{r example2, dpi=300}
+viz_scatter(penguins, bill_length_mm, flipper_length_mm) +
+  theme_42()
+
+```
+
+## Themes
+
+As you saw in the last section, we also have some themes. These are designed to make your plots looks nicer, and so far there's two of them. The first, `theme_42`, is a simple, clean, theme that minimizes clutter.
+
+```{r themes1, dpi=300, fig.width=8, fig.height=6}
 library(ggplot2)
 
-ggplot(iris, aes(Sepal.Width, Sepal.Length)) + 
-  geom_point() +
+viz_scatter(penguins, bill_length_mm, flipper_length_mm) + 
   labs(title = "This is a sample plot",
        subtitle = "And this is the subtitle") +
   theme_42()
 
 ```
+We also have a brighter, warmer theme. To use it, just add `theme_42_bright` to your call. This can be used with the helper functions `viz_*` as well as with regular `ggplot` calls:
 
-```{r example2b, dpi=300}
 
-ggplot(iris, aes(Sepal.Width, Sepal.Length)) + 
+```{r themes2, dpi=300, fig.width=8, fig.height=6}
+
+ggplot(penguins, aes(bill_length_mm, flipper_length_mm)) + 
   geom_point() +
   labs(title = "This is a sample plot",
        subtitle = "And this is the subtitle") +
@@ -72,28 +87,21 @@ ggplot(iris, aes(Sepal.Width, Sepal.Length)) +
 
 ```
 
-## Example: palettes 
+## Color schemes
 
-Now, let's color it with one of our palettes. First we can take a look at the palette separately.
+Lastly, we've created some color schemes for you. There's two palettes: `i42`, and `i42_bright`. To visualize them, just use the `palette_42` function.
 
-```{r example3, dpi=300, fig.asp=0.4}
-
-palette_42("i42")
-
-```
-Now, the brighter palette!
-
-```{r example3b, dpi=300, fig.asp=0.4}
+```{r color1, dpi=300, fig.asp=0.4}
 
 palette_42("i42_bright")
 
 ```
 
-Then we plot the same chart and add our colors.
+Here's what it looks like when we combine it with a previous plot.
 
-```{r example4, dpi=300}
+```{r color2, dpi=300, fig.width=8, fig.height=6}
 
-ggplot(iris, aes(Sepal.Width, Sepal.Length, color = Species)) + 
+ggplot(penguins, aes(bill_length_mm, flipper_length_mm, color = species)) + 
   geom_point() +
   labs(title = "This is a sample plot",
        subtitle = "And this is the subtitle") +
