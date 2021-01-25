@@ -16,3 +16,12 @@ This file is what a user will see when they select your template. Make sure that
 This is a good place to demonstrate special features that your template provides. Ideally it should knit out-of-the-box, or at least contain clear instructions as to what needs changing.
 
 Finally, be sure to remove this message!
+
+```{r}
+library(penguins)
+data(penguins)
+
+skimr::skim(penguins)
+
+
+```
