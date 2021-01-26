@@ -1,27 +1,104 @@
 ---
-title: "Data Cleaning and Exploration"
+title: |
+  ![](logo.png){width=1.5in}  
+  Texas WIC Project
+subtitle: "Data Cleaning and Exploration"
 author: "ideas42"
-date: "The Date"
+date: "`r Sys.Date()`"
 output: rmdformats::robobook
+project_code: A859
+psychologies: 
+  - loss_aversion
+  - overconfidence
+evaluation:
+  - rct
+project_type:
+  - dddts
+
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
 
-## Adding an RMarkdown Template
 
-This file is what a user will see when they select your template. Make sure that you update the fields in the yaml header. In particular you will want to update the `output` field to whatever format your template requires.
+# Executive Summary
 
-This is a good place to demonstrate special features that your template provides. Ideally it should knit out-of-the-box, or at least contain clear instructions as to what needs changing.
+You can use this space to explain what this report is about. What were your objectives, what you found, and how you did it.
 
-Finally, be sure to remove this message!
+# Project metadata:
+
+Remember that you can change the project code and type, psychologies used, and testing design in the header. They will automatically show up here:
+
+- **Project code:** `r rmarkdown::metadata$project_code`
+- **Evaluation:** This project uses a `r stringr::str_to_upper(rmarkdown::metadata$evaluation)` strategy for testing.
+- **Project type:** This is a `r stringr::str_to_upper(rmarkdown::metadata$project_type)` project. 
+- **Psychologies used:** `r rmarkdown::metadata$psychologies`
+
+# Data importing and cleaning
 
 ```{r}
-library(penguins)
+
+library(palmerpenguins)
+library(skimr)
+library(tidyverse)
+library(tools42)
+
 data(penguins)
 
-skimr::skim(penguins)
+```
+
+We start by taking a look at what variables we have in our dataset.
+
+
+```{r}
+
+skim(penguins)
+
+```
+
+
+Seems like there's quite a bit of continuous data. Let's plot some of it.
+
+
+```{r}
+
+penguins %>%
+  viz_scatter(flipper_length_mm, bill_length_mm) +
+  theme_42()
+
+```
+
+This is interesting. I wonder if there's any differences by species!
+
+```{r}
+
+penguins %>%
+  viz_scatter(flipper_length_mm, bill_length_mm) +
+  aes(color = species) +
+  theme_42() +
+  scale_color_manual(values = palette_42("i42_bright"))
 
 
 ```
+
+Now, a histogram of flipper length:
+
+
+```{r}
+
+penguins %>%
+  viz_hist(flipper_length_mm) +
+  aes(fill = species) +
+  facet_wrap(~species) +
+  theme_42() +
+  scale_fill_manual(values = palette_42("i42_bright"))
+
+
+```
+
+
+
+
+
+
