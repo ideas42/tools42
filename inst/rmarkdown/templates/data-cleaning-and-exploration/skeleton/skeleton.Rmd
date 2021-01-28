@@ -35,21 +35,28 @@ Remember that you can change the project code and type, psychologies used, and t
 - **Project type:** This is a `r stringr::str_to_upper(rmarkdown::metadata$project_type)` project. 
 - **Psychologies used:** `r rmarkdown::metadata$psychologies`
 
+Metadata is useful to the project team but also great for book-keeping. It collects valuable information on our practices that can be used to better inform our future work. Fill it out carefully, and remember to update it whenever it changes!  
+
 # Data importing and cleaning
+
+Typically, you will receive a dataset that is most likely in an Excel (`.xlsx` or `.xls`) or `.csv` (comma-separated values) format, which you will have to load and clean before analyzing it. In this template we use the `penguins` sample dataset available in the `palmerpenguins` package, so we don't actually read in any data. Just remember that you can easily do that with the `read_csv` (for csv files), `read_excel`, or `read_dta` (for Stata files) functions. If you want to learn more about reading in data, a tutorial is available on our knowledge-sharing [platform](https://kyso.io/dashboard?s=data&team=ideas42data). 
+
+First, we load all the packages we'll need:
 
 ```{r}
 
 library(palmerpenguins)
+library(visdat)
 library(skimr)
 library(tidyverse)
 library(tools42)
 
+# Using the penguins dataset
 data(penguins)
 
 ```
 
-We start by taking a look at what variables we have in our dataset.
-
+A good way to start is by looking at what variables are available in our dataset, as well as the number of observations. The `skim` function in the `skimr` package is a quick and easy way to summarize this. Consider it a beefed-up replacement of the Stata `summarize` command. You'll see you also get tiny histograms for your continuous data. Visualizing your data is **critical** and you should always, always spend some time plotting it. You won't understand your data unless you plot it.
 
 ```{r}
 
@@ -57,17 +64,27 @@ skim(penguins)
 
 ```
 
+Great. Looks like most of our data is complete and falls under the expected ranges (that is, there are no crazy values for any of the variables). Let's get a sense of which variables are continuous and which are categorical (character or factor). 
 
-Seems like there's quite a bit of continuous data. Let's plot some of it.
-
+We can do that with the `vis_dat` function, which plots every observation and color-codes it by variable type. We could even make it look nicer by adding the i42 theme and color scheme, since this is a `ggplot` object.
 
 ```{r}
 
-penguins %>%
-  viz_scatter(flipper_length_mm, bill_length_mm) +
-  theme_42()
+vis_dat(penguins_raw)
 
 ```
+
+Isn't this cool? There's also a function to see the degree of missingness for each of our variables. It's called `vis_miss`:
+
+```{r}
+
+vis_miss(penguins_raw)
+
+```
+
+# Exploratory Analysis
+
+Ok, let's look at the relationships between variables. 
 
 This is interesting. I wonder if there's any differences by species!
 
@@ -96,8 +113,6 @@ penguins %>%
 
 
 ```
-
-
 
 
 
